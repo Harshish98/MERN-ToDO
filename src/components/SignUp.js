@@ -45,16 +45,18 @@ function SignUp() {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center content-center h-screen">
-      <div className="w-[350px] rounded-3xl bg-[rgb(250,235,215)] p-10">
-        <p className="text-4xl mb-5 text-center">Sign Up</p>
+    <div className="flex flex-col justify-center items-center content-center min-h-screen p-4 sm:p-6 md:p-8">
+      <div className="w-full max-w-sm md:max-w-md rounded-3xl bg-[rgb(250,235,215)] p-6 sm:p-8 md:p-10 shadow-md">
+        <p className="text-2xl sm:text-3xl md:text-4xl mb-5 text-center">
+          Sign Up
+        </p>
         <input
           type="text"
           name="name"
           onChange={handleOnChange}
           value={items.name}
           placeholder="Enter Your Name"
-          className="border-none mb-3 w-full py-2 px-3 rounded-lg text-lg block shadow-[0_4px_8px_0_rgba(0,0,0,0.2)]"
+          className="border-none mb-3 w-full py-2 px-3 rounded-lg text-lg block shadow-md"
         />
         <input
           type="email"
@@ -62,7 +64,7 @@ function SignUp() {
           onChange={handleOnChange}
           value={items.email}
           placeholder="Enter Your Email"
-          className="border-none mb-3 w-full py-2 px-3 rounded-lg text-lg block shadow-[0_4px_8px_0_rgba(0,0,0,0.2)]"
+          className="border-none mb-3 w-full py-2 px-3 rounded-lg text-lg block shadow-md"
         />
         <input
           type="password"
@@ -70,7 +72,7 @@ function SignUp() {
           onChange={handleOnChange}
           value={items.password}
           placeholder="Enter Your Password"
-          className="border-none mb-3 w-full py-2 px-3 rounded-lg text-lg block shadow-[0_4px_8px_0_rgba(0,0,0,0.2)]"
+          className="border-none mb-3 w-full py-2 px-3 rounded-lg text-lg block shadow-md"
         />
         <input
           type="password"
@@ -78,15 +80,15 @@ function SignUp() {
           onChange={handleOnChange}
           value={items.cnfPassword}
           placeholder="Confirm Your Password"
-          className="border-none mb-8 w-full py-2 px-3 rounded-lg text-lg block shadow-[0_4px_8px_0_rgba(0,0,0,0.2)]"
+          className="border-none mb-8 w-full py-2 px-3 rounded-lg text-lg block shadow-md"
         />
         <button
-          className="w-5/6 bg-orange-600 text-white px-3 hover:bg-yellow-500 hover:text-black border-none rounded-3xl text-xl mx-auto block p-2 font-semibold mb-4 shadow-[0_4px_8px_0_rgba(0,0,0,0.2)]"
+          className="w-full bg-orange-600 text-white px-3 hover:bg-yellow-500 hover:text-black border-none rounded-3xl text-xl mx-auto block p-2 font-semibold mb-4 shadow-md"
           onClick={handleSubmit}
         >
           Submit
         </button>
-        <p>
+        <p className="text-center">
           Already have an account?
           <Link to="/">
             <span className="text-[#38668c] text-xs font-semibold">

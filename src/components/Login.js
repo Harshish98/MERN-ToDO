@@ -11,7 +11,6 @@ function Login() {
   });
 
   const navigate = useNavigate();
-
   const { tokenLocalStorage } = useContext(TokenContext);
 
   const handleSubmit = async (e) => {
@@ -32,6 +31,7 @@ function Login() {
         });
         tokenLocalStorage(response.data.token);
         navigate("/todo");
+        console.log(response)
       } else {
         toast.error("Sign in error", {
           duration: 3000,
@@ -47,16 +47,18 @@ function Login() {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center content-center h-screen">
-      <div className="w-[350px] rounded-3xl bg-[rgb(250,235,215)] p-10">
-        <p className="text-4xl mb-5 text-center">Sign In</p>
+    <div className="flex flex-col justify-center items-center content-center min-h-screen p-4 sm:p-6 md:p-8">
+      <div className="w-full max-w-xs md:max-w-sm rounded-3xl bg-[rgb(250,235,215)] p-6 sm:p-8 md:p-10 shadow-md">
+        <p className="text-2xl sm:text-3xl md:text-4xl mb-5 text-center">
+          Sign In
+        </p>
         <input
           type="email"
           name="email"
           value={items.email}
           onChange={handleOnChange}
           placeholder="Enter Email"
-          className="border-none mb-3 w-full py-2 px-3 rounded-lg text-lg block shadow-[0_4px_8px_0_rgba(0,0,0,0.2)]"
+          className="border-none mb-3 w-full py-2 px-3 rounded-lg text-lg block shadow-md"
         />
         <input
           type="password"
@@ -64,18 +66,18 @@ function Login() {
           value={items.password}
           onChange={handleOnChange}
           placeholder="Enter Password"
-          className="border-none mb-3 w-full py-2 px-3 rounded-lg text-lg block shadow-[0_4px_8px_0_rgba(0,0,0,0.2)]"
+          className="border-none mb-3 w-full py-2 px-3 rounded-lg text-lg block shadow-md"
         />
         <Link to="/forget-password">
-          <p className="mb-5">Forgot password?</p>
+          <p className="mb-5 text-sm sm:text-base">Forgot password?</p>
         </Link>
         <button
-          className="w-5/6 bg-orange-600 text-white px-3 hover:bg-yellow-500 hover:text-black border-none rounded-3xl text-xl mx-auto block p-2 font-semibold mb-4 shadow-[0_4px_8px_0_rgba(0,0,0,0.2)]"
+          className="w-full bg-orange-600 text-white px-3 hover:bg-yellow-500 hover:text-black border-none rounded-3xl text-xl mx-auto block p-2 font-semibold mb-4 shadow-md"
           onClick={handleSubmit}
         >
           Login
         </button>
-        <p>
+        <p className="text-center">
           Don't have an account?
           <Link to="/signup">
             <span className="text-xs font-semibold text-[#38668c]">

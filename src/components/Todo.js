@@ -12,6 +12,7 @@ function Todo() {
     name: "",
   });
   const [userDetails, setUserDetails] = useState(null);
+  const [showBox, setShowBox] = useState(false)
 
   const { token, SignOut } = useContext(TokenContext);
 
@@ -43,7 +44,7 @@ function Todo() {
         },
       }
     );
-    console.log(response);
+    // console.log(response);
     setUserDetails(response.data);
     console.log(userDetails);
   };
@@ -109,27 +110,12 @@ function Todo() {
   };
 
   return (
-    <div className="relative">
-      <div className="w-[450px] h-[500px] mx-auto bg-[rgb(250,235,215)] py-4">
-        <h1 className="font-bold text-4xl text-center bg-[rgb(230,99,99)] my-4">
+    <div className="flex justify-center">
+      <div className="w-full min-h-96 max-w-md lg:max-w-lg bg-[rgb(250,235,215)] py-4 px-4 sm:px-6 md:px-8 lg:px-10">
+        <h1 className="font-bold text-2xl sm:text-3xl md:text-4xl text-center bg-[rgb(230,99,99)] my-4 py-2 rounded">
           ToDo List
         </h1>
-        <div className="absolute top-1 right-60">
-          {userDetails && (
-            <>
-              <p className="text-white">Name: {userDetails.name}</p>
-              <p className="text-white">Email: {userDetails.email}</p>
-            </>
-          )}
-          <button
-            onClick={SignOut}
-            className="rounded-md text-lg bg-orange-600 text-white px-6 py-1 pb-1 hover:bg-yellow-500 hover:text-black"
-          >
-            Sign Out
-          </button>
-        </div>
-
-        <div className="">
+        <div className="mt-8">
           <CreateTodo fetchData={fetchData} />
           <>
             {apiData.length === 0 ? (
@@ -140,16 +126,16 @@ function Todo() {
               apiData.map((val, index) => (
                 <div
                   key={index}
-                  className="w-full flex justify-evenly items-center"
+                  className="w-full flex justify-between items-center mb-2"
                 >
                   {editTodo === val ? (
-                    <div className="w-full flex justify-evenly items-center">
+                    <div className="w-full flex justify-between items-center">
                       <input
                         type="text"
                         name="name"
                         value={editedTodo.name}
                         onChange={handleEditChange}
-                        className="bg-transparent border-b-[#00008b] border-b-2 hover:focus:active:outline-none text-[#00008b] font-semibold text-lg block w-4/6"
+                        className="bg-transparent border-b-[#00008b] border-b-2 focus:outline-none text-[#00008b] font-semibold text-sm md:text-lg block w-4/6 capitalize"
                       />
                       <div className="space-x-2">
                         <button
@@ -163,7 +149,7 @@ function Todo() {
                             viewBox="0 0 24 24"
                             strokeWidth={1.5}
                             stroke="currentColor"
-                            className="size-5 pt-[2px]"
+                            className="md:w-6 md:h-6 w-4 h-4"
                           >
                             <path
                               strokeLinecap="round"
@@ -183,7 +169,7 @@ function Todo() {
                             viewBox="0 0 24 24"
                             strokeWidth={1.5}
                             stroke="currentColor"
-                            className="size-5 pt-[2px]"
+                            className="md:w-6 md:h-6 w-4 h-4"
                           >
                             <path
                               strokeLinecap="round"
@@ -196,7 +182,7 @@ function Todo() {
                     </div>
                   ) : (
                     <>
-                      <p className="text-[#00008b] w-4/6 px-1 font-semibold text-lg capitalize mb-2">
+                      <p className="text-[#00008b] w-4/6 px-1 font-semibold md:text-lg capitalize mb-2 text-sm">
                         {val.name}
                       </p>
                       <div className="space-x-2">
@@ -211,7 +197,7 @@ function Todo() {
                             viewBox="0 0 24 24"
                             strokeWidth={1.5}
                             stroke="currentColor"
-                            className="size-5 pt-[3px]"
+                            className="md:w-6 md:h-6 w-4 h-4"
                           >
                             <path
                               strokeLinecap="round"
@@ -231,7 +217,7 @@ function Todo() {
                             viewBox="0 0 24 24"
                             strokeWidth={1.5}
                             stroke="currentColor"
-                            className="size-5 pt-[3px]"
+                            className="md:w-6 md:h-6 w-4 h-4"
                           >
                             <path
                               strokeLinecap="round"
@@ -247,6 +233,40 @@ function Todo() {
               ))
             )}
           </>
+        </div>
+      </div>
+      <div className="">
+        <button onClick={() => setShowBox(!showBox)}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className="size-10 text-orange-600"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </button>
+        <div className={`${showBox ? "visible" : "invisible"}`}>
+          {userDetails && (
+            <>
+              <p className="text-white text-xs md:text-base capitalize">
+                {userDetails.name}
+              </p>
+              <p className="text-white text-xs md:text-base">
+                {userDetails.email}
+              </p>
+            </>
+          )}
+          <button
+            onClick={SignOut}
+            className="rounded-md text-xs md:text-base bg-orange-600 text-white px-3 py-1 hover:bg-yellow-500 hover:text-black mt-2"
+          >
+            Sign Out
+          </button>
         </div>
       </div>
     </div>
